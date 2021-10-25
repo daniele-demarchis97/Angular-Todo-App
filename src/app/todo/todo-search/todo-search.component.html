@@ -1,0 +1,11 @@
+<div class="p-8 d-flex justify-content-center">
+  <div class="bg-gray-800 flex items-center rounded-full shadow-xl col-md-4">
+    <input class="bg-gray-800 rounded-l-full w-full py-4 px-6 text-white leading-tight focus:outline-none" id="search"
+      type="text" placeholder="Add task" #newTask>
+    <div class="p-4">
+      <button
+        class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
+        (click)="submitNewTaskOutput(newTask.value)">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="form-check form-switch d-flex justify-content-center d-grid gap-3 mt-2 col-md-12"
+  *ngFor="let todo of filteredTodo()">
+  <div class="mb-4" [ngClass]="todo.done ? 'line-through' : 'normal'">
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="todo.done" >
+    <span *ngIf="!todo.editable; else editingTask" class="d-flex justify-start">{{todo.description}}</span>
+    <ng-template #editingTask>
+      <input type="text" class="d-flex justify-start">
+    </ng-template>
+    <span class="mx-5">Added: {{todo.data | date: 'dd/MM/yyyy'}}</span>
+    <button ><img class="inline px-2" src="../../assets/edit-icon.svg" alt="edit-icon"></button>
+    <button ><img class="inline px-2" src="../../assets/save-icon.svg" alt="save-icon"></button>
+  </div>
+</div>
