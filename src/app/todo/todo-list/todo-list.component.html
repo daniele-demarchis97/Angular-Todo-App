@@ -7,7 +7,7 @@
       <input type="text" class="d-flex justify-start">
     </ng-template>
     <span class="mx-5">Added: {{todo.data | date: 'dd/MM/yyyy'}}</span>
-    <button ><img class="inline px-2" src="../../assets/edit-icon.svg" alt="edit-icon"></button>
-    <button ><img class="inline px-2" src="../../assets/save-icon.svg" alt="save-icon"></button>
+    <button (click)="editedTodo(todo)"><img class="inline px-2" src="../../assets/edit-icon.svg" alt="edit-icon"></button>
+    <button (click)="savedTodo(todo)"><img class="inline px-2" src="../../assets/save-icon.svg" alt="save-icon"></button>
   </div>
 </div>

@@ -14,6 +14,7 @@ export class TodoContainerComponent implements OnInit {
   newTodo!: string;
   dateToday!: Date | number;
   filter!: string;
+  editedTodo!: string;
 
   constructor() { }
 
@@ -22,6 +23,7 @@ export class TodoContainerComponent implements OnInit {
     this.newTodo = '';
     this.dateToday = Date.now();
     this.todos = TODOS;
+    this.editedTodo = '';
   }
 
   //newItem param is emitted from todo-nav component
@@ -42,12 +44,12 @@ export class TodoContainerComponent implements OnInit {
     this.idCounter++;
   }
 
-
-  outputFiltered(outFilter:string) {
+  // output from todo-nav component
+  outputFiltered(outFilter: string) {
     this.filter = outFilter;
   }
 
-
+  //callback for todo-list component
   todosFiltered = (): Todo[] => {
     if (this.filter === 'all') {
       return this.todos;
@@ -58,6 +60,20 @@ export class TodoContainerComponent implements OnInit {
     }
 
     return this.todos;
+  }
+
+
+  editTodo = (todo: Todo) : void => {
+    this.editedTodo = todo.description;
+    todo.editable = true;
+  }
+
+  saveTodo = (todo: Todo) : void => {
+    if (todo.description.trim().length === 0) {
+      todo.description = this.editedTodo;
+    }
+
+    todo.editable = false;
   }
 
 }

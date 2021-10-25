@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '@app/models/todo';
 
 @Component({
@@ -9,6 +9,10 @@ import { Todo } from '@app/models/todo';
 export class TodoListComponent implements OnInit {
 
   @Input() filteredTodo!: () => Todo[];
+
+  @Input() editedTodo!: (todo: Todo) => void;
+
+  @Input() savedTodo!: (todo: Todo) => void;
 
   constructor() { }
 

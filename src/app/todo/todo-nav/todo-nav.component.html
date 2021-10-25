@@ -10,13 +10,13 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <button
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium no-underline"
-                [ngClass]="{'active bg-gray-900': filter === 'all'}" (click)="filt('all')">All</button>
+                [ngClass]="{'bg-gray-900': filter === 'all'}" (click)="filt('all')">All</button>
               <button
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium no-underline"
-                [ngClass]="{'active bg-gray-900': filter === 'active'}" (click)="filt('active')">Active</button>
+                [ngClass]="{'bg-gray-900': filter === 'active'}" (click)="filt('active')">Active</button>
               <button
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium no-underline"
-                [ngClass]="{'active bg-gray-900': filter === 'completed'}" (click)="filt('completed')">Completed</button>
+                [ngClass]="{'bg-gray-900': filter === 'completed'}" (click)="filt('completed')">Completed</button>
             </div>
           </div>
         </div>
@@ -28,13 +28,13 @@
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <button
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium no-underline"
-          [ngClass]="{'active bg-gray-900': filter === 'all'}" >All</button>
+          [ngClass]="{'active bg-gray-900': filter === 'all'}" (click)="filt('all')">All</button>
         <button
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium no-underline"
-          [ngClass]="{'active bg-gray-900': filter === 'active'}">Active</button>
+          [ngClass]="{'active bg-gray-900': filter === 'active'}" (click)="filt('active')">Active</button>
         <button
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium no-underline"
-          [ngClass]="{'active bg-gray-900': filter === 'completed'}">Completed</button>
+          [ngClass]="{'active bg-gray-900': filter === 'completed'}" (click)="filt('completed')">Completed</button>
       </div>
     </div>
   </nav>

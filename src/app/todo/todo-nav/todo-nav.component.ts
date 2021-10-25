@@ -20,6 +20,7 @@ export class TodoNavComponent implements OnInit {
 
   filt(f:string) {
     this.filtered.emit(f);
+    this.filter = f;
   }
 
 }
