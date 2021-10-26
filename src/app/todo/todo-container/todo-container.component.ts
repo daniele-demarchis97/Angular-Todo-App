@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TODOS } from '@app/mock-todos';
 import { Todo } from '@app/models/todo';
+import { TodoService } from '@app/services/todo.service';
 
 @Component({
   selector: 'app-todo-container',
@@ -9,21 +9,26 @@ import { Todo } from '@app/models/todo';
 })
 export class TodoContainerComponent implements OnInit {
 
-  todos!: Todo[];
+  todos: Todo[] = [];     //service
   idCounter!: number;
   newTodo!: string;
   dateToday!: Date | number;
   filter!: string;
   editedTodo!: string;
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
     this.idCounter = 6;
     this.newTodo = '';
     this.dateToday = Date.now();
-    this.todos = TODOS;
     this.editedTodo = '';
+    this.getTodos();        //service
+  }
+
+  getTodos(): void {      //service
+    this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
   }
 
   //newItem param is emitted from todo-nav component

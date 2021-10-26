@@ -1,4 +1,4 @@
-import { Todo } from "./models/todo";
+import { Todo } from "./todo";
 
 export const TODOS: Todo[] = [
     { id: 1, description: 'Clean the house', done: false, data: new Date(2012, 3, 1), editable: false},
