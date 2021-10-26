@@ -45,7 +45,7 @@ export class TodoContainerComponent implements OnInit {
   }
 
   // output from todo-nav component
-  outputFiltered(outFilter: string) {
+  outputFiltered(outFilter: string): void {
     this.filter = outFilter;
   }
 
@@ -63,12 +63,12 @@ export class TodoContainerComponent implements OnInit {
   }
 
 
-  editTodo = (todo: Todo) : void => {
+  editTodo = (todo: Todo): void => {
     this.editedTodo = todo.description;
     todo.editable = true;
   }
 
-  saveTodo = (todo: Todo) : void => {
+  saveTodo = (todo: Todo): void => {
     if (todo.description.trim().length === 0) {
       todo.description = this.editedTodo;
     }
@@ -76,4 +76,12 @@ export class TodoContainerComponent implements OnInit {
     todo.editable = false;
   }
 
+  removeTodo = (todo: Todo): void => {
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+  }
+
+  removeTodos = (): void => {
+    this.todos = this.todos.filter(todo => !todo.done);
+  }
 }

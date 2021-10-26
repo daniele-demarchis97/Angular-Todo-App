@@ -18,7 +18,7 @@ export class TodoNavComponent implements OnInit {
   }
 
 
-  filt(f:string) {
+  filt(f:string): void {
     this.filtered.emit(f);
     this.filter = f;
   }

@@ -1,5 +1,5 @@
 <app-todo-nav (filtered)="outputFiltered($event)" ></app-todo-nav>
 
-<app-todo-search (newTaskOutput)="submitNewTask($event)"></app-todo-search>
+<app-todo-search *ngIf="filter !== 'completed'" (newTaskOutput)="submitNewTask($event)"></app-todo-search>
 
-<app-todo-list [filteredTodo]="todosFiltered" [editedTodo]="editTodo" [savedTodo]="saveTodo" ></app-todo-list>
+<app-todo-list [filteredTodo]="todosFiltered" [editedTodo]="editTodo" [savedTodo]="saveTodo" [removeTodoOut]="removeTodo" [removeTodosOut]="removeTodos" [filter]=filter></app-todo-list>
