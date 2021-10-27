@@ -3,16 +3,19 @@ import { Todo } from '@app/models/todo';
 import { TODOS } from '@app/models/mock-todos';
 
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
 
-  constructor() { }
+  private todosUrl = 'api/todos';  // URL to web api
 
+  constructor(private http: HttpClient) { }
+
+  /** GET heroes from the server */
   getTodos(): Observable<Todo[]> {
-    const todos = of(TODOS);
-    return todos;
+    return this.http.get<Todo[]>(this.todosUrl)
   }
 }
