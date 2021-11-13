@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from '@app/models/todo';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Todo } from '@app/shared/shared/models/todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,11 +12,11 @@ export class TodoListComponent implements OnInit {
 
   @Input() filter!: string;
 
-  @Input() editedTodo!: (todo: Todo) => void;
+  @Output() editTodo = new EventEmitter<Todo>();
 
-  @Input() savedTodo!: (todo: Todo) => void;
+  @Output() saveTodo = new EventEmitter<Todo>()
 
-  @Input() removeTodoOut!: (todo: Todo) => void;
+  @Output() removeTodo = new EventEmitter<Todo>()
 
   @Input() removeTodosOut!: () => void;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '@app/models/todo';
-import { TodoService } from '@app/services/todo.service';
+import { Todo } from '@app/shared/shared/models/todo';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-container',
@@ -68,20 +68,19 @@ export class TodoContainerComponent implements OnInit {
   }
 
 
-  editTodo = (todo: Todo): void => {
+  editTodo (todo: Todo): void  {
     this.editedTodo = todo.description;
     todo.editable = true;
   }
 
-  saveTodo = (todo: Todo): void => {
+  saveTodo(todo: Todo): void {
     if (todo.description.trim().length === 0) {
       todo.description = this.editedTodo;
     }
-
     todo.editable = false;
   }
 
-  removeTodo = (todo: Todo): void => {
+  removeTodo(todo: Todo): void {
     const index = this.todos.indexOf(todo);
     this.todos.splice(index, 1);
   }

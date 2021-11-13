@@ -9,13 +9,13 @@
       </ng-template>
       <span class="mx-5">Added: {{todo.data | date: 'dd/MM/yyyy'}}</span>
       <div *ngIf="filter !== 'completed'; else deleteTemplate" class="inline">
-        <button (click)="editedTodo(todo)"><img class="inline px-2" src="../../assets/edit-icon.svg"
+        <button (click)="editTodo.emit(todo)"><img class="inline px-2" src="../../assets/edit-icon.svg"
             alt="edit-icon"></button>
-        <button (click)="savedTodo(todo)"><img class="inline px-2" src="../../assets/save-icon.svg"
+        <button (click)="saveTodo.emit(todo)"><img class="inline px-2" src="../../assets/save-icon.svg"
             alt="save-icon"></button>
       </div>
       <ng-template #deleteTemplate>
-        <button (click)="removeTodoOut(todo)"><img class="inline px-2" src="../../assets/delete-icon.svg"
+        <button (click)="removeTodo.emit(todo)"><img class="inline px-2" src="../../assets/delete-icon.svg"
             alt="delete-icon"></button>
       </ng-template>
     </div>
