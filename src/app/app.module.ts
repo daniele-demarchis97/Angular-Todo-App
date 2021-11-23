@@ -1,29 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './modules/core/services/in-memory-data.service';
+import { InMemoryDataService } from './modules/todo/services/in-memory-data.service';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoListComponent } from './modules/core/components/todo-list/todo-list.component';
-import { TodoNavComponent } from './shared/components/todo-nav/todo-nav.component';
-import { TodoSearchComponent } from './modules/core/components/todo-search/todo-search.component';
-import { TodoContainerComponent } from './modules/core/container/todo-container/todo-container.component';
+import { TodoNavComponent } from './layout/todo-nav/todo-nav.component';
+import { TodoContainerComponent } from './modules/todo/todo-container/todo-container.component';
+import { TodoListComponent } from './modules/todo/components/todo-list/todo-list.component';
+import { TodoSearchComponent } from './modules/todo/components/todo-addbar/todo-search.component';
+import { CardComponent } from "@app/shared/components/card/card.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent,
     TodoNavComponent,
+    TodoContainerComponent,
+    TodoListComponent,
     TodoSearchComponent,
-    TodoContainerComponent
+    CardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
 

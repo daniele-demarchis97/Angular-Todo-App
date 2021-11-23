@@ -1,24 +1,29 @@
 <div [ngClass]="{'mt-5': filter === 'completed'}">                                                <!--ngClass adds margin in completed section-->
   <div class="form-check form-switch d-flex justify-content-center d-grid gap-3 mt-2 col-md-12"
     *ngFor="let todo of filteredTodo()">
-    <div class="mb-4" [ngClass]="todo.done ? 'line-through' : 'normal'">
-      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="todo.done">
-      <span *ngIf="!todo.editable; else editingTask" class="d-flex justify-start">{{todo.description}}</span>
-      <ng-template #editingTask>
-        <input type="text" class="d-flex justify-start" [(ngModel)]="todo.description">
-      </ng-template>
-      <span class="mx-5">Added: {{todo.data | date: 'dd/MM/yyyy'}}</span>
-      <div *ngIf="filter !== 'completed'; else deleteTemplate" class="inline">
+
+    <app-card [classes]="todo.done ? 'line-through' : 'normal'">
+      <ng-container data-body>
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="todo.done">
+        <span *ngIf="!todo.editable; else editingTask" class="d-flex justify-start">{{todo.description}}</span>
+        <ng-template #editingTask>
+          <input type="text" class="d-flex justify-start" [(ngModel)]="todo.description">
+        </ng-template>
+        <span class="mx-5">Added: {{todo.data | date: 'dd/MM/yyyy'}}</span>
+      </ng-container>
+
+      <ng-container data-buttons *ngIf="filter !== 'completed'; else deleteTemplate">
         <button (click)="editTodo.emit(todo)"><img class="inline px-2" src="../../assets/edit-icon.svg"
-            alt="edit-icon"></button>
+          alt="edit-icon"></button>
         <button (click)="saveTodo.emit(todo)"><img class="inline px-2" src="../../assets/save-icon.svg"
-            alt="save-icon"></button>
-      </div>
+          alt="save-icon"></button>
+      </ng-container>
       <ng-template #deleteTemplate>
         <button (click)="removeTodo.emit(todo)"><img class="inline px-2" src="../../assets/delete-icon.svg"
             alt="delete-icon"></button>
       </ng-template>
-    </div>
+    </app-card>
+
   </div>
 </div>
 
