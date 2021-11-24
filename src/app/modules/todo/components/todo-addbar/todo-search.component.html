@@ -5,7 +5,7 @@
     <div class="p-4">
       <button
         class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center"
-        (click)="submitNewTaskOutput(newTask.value); newTask.value= '' ">Add</button>     <!--the second click event clear the input-->
+        (click)="newTaskOutput.emit(newTask.value); newTask.value= '' ">Add</button>     <!--the second click event clear the input-->
     </div>
   </div>
 </div>

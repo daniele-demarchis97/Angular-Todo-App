@@ -14,8 +14,4 @@ export class TodoSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitNewTaskOutput(value: string): void {
-    this.newTaskOutput.emit(value);
-  }
-
 }

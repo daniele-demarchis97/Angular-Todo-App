@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '@app/models/todo';
 import { TodoService } from '../../services/todo.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,9 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TodoListComponent implements OnInit {
 
-  todo: Todo | undefined;
+  todos: Todo[] = [];
 
-  @Input() filteredTodo!: () => Todo[];
 
   @Input() filter!: string;
 
@@ -20,20 +18,34 @@ export class TodoListComponent implements OnInit {
 
   @Output() saveTodo = new EventEmitter<Todo>()
 
-  @Output() removeTodo = new EventEmitter<Todo>()
-
   @Input() removeTodosOut!: () => void;
 
-  constructor(private todoService: TodoService, private route: ActivatedRoute) { }
+  constructor(private todoService : TodoService) { }
 
-  ngOnInit() {
-    this.getTodo();
+  ngOnInit(): void {
+    this.getTodos();
    }
 
-   getTodo(): void {      //service
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.todoService.getTodo(id)
-        .subscribe(todo => this.todo = todo);
+   getTodos(): void {      //service
+    this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
+  }
+
+  todosFiltered = (): Todo[] => {
+    if (this.filter === 'all') {
+      return this.todos;
+    } else if (this.filter === 'active') {
+      return this.todos.filter(todo => !todo.done);
+    } else if (this.filter === 'completed') {
+      return this.todos.filter(todo => todo.done);
+    }
+    return this.todos;
+  }
+
+  delete(todo: Todo): void {
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+    this.todoService.deleteTodo(todo.id).subscribe();
   }
 
 }

@@ -8,7 +8,7 @@ export class LogService {
   constructor() { }
 
   log(message: string) {
-    console.log('Log Service', message);
+    console.log('Log Service ', message);
 
   }
 }
