@@ -9,27 +9,18 @@ import { TodoService } from '../../services/todo.service';
 })
 export class TodoListComponent implements OnInit {
 
-  todos: Todo[] = [];
-
-
+  @Input() todos!: Todo[];
   @Input() filter!: string;
-
+  @Output() deleteTodo = new EventEmitter<Todo>();
+  @Output() deleteAllTodo = new EventEmitter();
   @Output() editTodo = new EventEmitter<Todo>();
-
   @Output() saveTodo = new EventEmitter<Todo>()
-
-  @Input() removeTodosOut!: () => void;
 
   constructor(private todoService : TodoService) { }
 
   ngOnInit(): void {
-    this.getTodos();
+    this.todos = this.todoService.getTodos();
    }
-
-   getTodos(): void {      //service
-    this.todoService.getTodos()
-        .subscribe(todos => this.todos = todos);
-  }
 
   todosFiltered = (): Todo[] => {
     if (this.filter === 'all') {
@@ -41,11 +32,4 @@ export class TodoListComponent implements OnInit {
     }
     return this.todos;
   }
-
-  delete(todo: Todo): void {
-    const index = this.todos.indexOf(todo);
-    this.todos.splice(index, 1);
-    this.todoService.deleteTodo(todo.id).subscribe();
-  }
-
 }
