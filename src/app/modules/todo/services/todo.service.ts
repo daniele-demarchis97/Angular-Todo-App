@@ -11,6 +11,7 @@ import { LogService } from '@app/services/log.service';
 })
 export class TodoService {
   private todosUrl = 'api/todos'; // URL to web api
+  idCounter: number = 6;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,8 +37,15 @@ export class TodoService {
   }
 
   // POST new todo to the server
-  addTodo(todo: Todo): Observable<Todo> {
-    return this.http.post<Todo>(this.todosUrl, todo, this.httpOptions).pipe(
+  addTodo(newItem: string): Observable<Todo> {
+    const todoToAdd = {
+      id: this.idCounter,
+      description: newItem,
+      done: false,
+      data: Date.now(),
+      editable: false
+    }
+    return this.http.post<Todo>(this.todosUrl, todoToAdd, this.httpOptions).pipe(
       tap((data) => this.logService.log(`addTodo Eseguito ${data}`)),
       catchError(this.handleError)
     );

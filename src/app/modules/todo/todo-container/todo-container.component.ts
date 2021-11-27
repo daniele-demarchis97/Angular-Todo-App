@@ -32,10 +32,7 @@ export class TodoContainerComponent implements OnInit {
       return;
     }
 
-    this.todoService.addTodo( {description: newItem} as Todo)
-      .subscribe(todo => {
-        this.todos.push(todo);
-      });
+    this.todoService.addTodo(newItem).subscribe(m => this.todoService.getTodos());
 
 
   }
